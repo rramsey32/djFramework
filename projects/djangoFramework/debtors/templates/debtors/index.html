@@ -1,0 +1,18 @@
+{% extends "debtors/base.html" %}
+
+{% block body_block %}
+<br>
+{% if latest_debtor_list %}
+  <center>
+      <h3>Your daily list of debtors</h3>
+      <ul>
+
+    {% for debtor in latest_debtor_list %}
+        <li><a href="{% url 'debtors:detail' debtor.id %}">{{ debtor.debtor_name }}</a></li>
+    {% endfor %}
+    </ul></center>
+{% else %}
+    <p>No debts are available.</p>
+{% endif %}
+
+{% endblock %}
