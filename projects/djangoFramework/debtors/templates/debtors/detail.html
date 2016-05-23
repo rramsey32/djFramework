@@ -1,26 +1,32 @@
-{% extends 'debtors/base.html' %}
+{% extends "debtors/base.html" %}
 
 {% block body_block %}
 
 <h1>{{ debtor.debtor_name }}</h1>
+{% if debtor.crime_set.all %}
+<h2>Criminal Records:</h2>
 <ul>
-    <li>{{ debtor.debtor_address }}</li>
-   <li> {{ debtor.debtor_city }}, {{ debtor.debtor_state}} {{ debtor.debtor_zip }}</li>
-    <li> {{ debtor.debtor_phone }}</li>
-    <li> DOB: {{ debtor.debtor_dob }} </li>
-    <li> Added by: {{ debtor.debtor_added_by }}</li>
-
+    {% for crime in debtor.crime_set.all %}
+    <li>Cause Number: <a href="{% url 'debtors:crime' crime.id %}">{{ crime.causeNumber}}</a></li>
+    {% endfor %}
 </ul>
-
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-
-{% if debtor.debt_set %}
+<h2>Known Addresses:</h2>
 <ul>
-{% for debt in debtor.debt_set.all %}
-    <li>{{ debt.debtor.debtor_name }} owes {{ debt.company.company_name }} ${{ debt.debt_amount }} from an invoice dated {{ debt.debt_date }}</li>
-{% endfor %}
+    {% for crime in debtor.crime_set.all %}
+    <li>{{crime.address}} {{crime.city}} {{crime.state}} {{crime.zip}}</li>
+    {% endfor %}
 </ul>
 {% endif %}
+{% if debtor.debt_set.all %}
+<h2>Debts</h2>
+<ul>
+    {% for debt in debtor.debt_set.all %}
+    <li>{{debt.company}} {{debt.debt_amount}} </li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
 {% if debtor.comment_set.all %}
 <ul>
