@@ -8,7 +8,7 @@
       <ul>
 
     {% for debtor in latest_debtor_list %}
-        <li><a href="{% url 'debtors:detail' debtor.id %}">{{ debtor.debtor_name }}</a></li>
+        <li><a href="{% url 'debtors:detail' debtor.debtor_id %}">{{ debtor.debtor_name }}</a></li>
     {% endfor %}
     </ul></center>
 {% else %}

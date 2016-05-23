@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.conf import settings
 from django.utils import timezone
 #import datetime
 from django.core.urlresolvers import reverse
@@ -19,20 +20,20 @@ class Company(models.Model):
 
 
 class Debtor(models.Model):
-    debtor_name = models.CharField(max_length=100)
-    debtor_address = models.CharField(max_length=200)
-    debtor_city = models.CharField(max_length=50)
-    debtor_state = models.CharField(max_length=2)
-    debtor_zip = models.CharField(max_length=15)
-    debtor_phone = models.CharField(max_length=25)
-    debtor_added_by = models.ForeignKey(User)
+    debtor_name = models.CharField(max_length=100, unique=True)
+    debtor_added_by = models.ForeignKey(settings.AUTH_USER_MODEL, default=1)
     def __str__(self):
         return self.debtor_name
     def get_absolute_url(self):
         return "/debtors/%i/" % self.id
 
 class Debt(models.Model):
-    debtor = models.ForeignKey(Debtor, on_delete=models.CASCADE)
+    debtor_name = models.ForeignKey(Debtor, on_delete=models.CASCADE)
+    address = models.CharField(max_length=200, null=True)
+    city = models.CharField(max_length=50, null=True)
+    state = models.CharField(max_length=2, null=True)
+    zip = models.CharField(max_length=15, null=True)
+    phone = models.CharField(max_length=25, null=True)
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     debt_date = models.DateField('date of debt')
     debt_amount = models.IntegerField(default=0)
@@ -48,22 +49,26 @@ class Comment(models.Model):
         return self.debtor.debtor_name
 
 class Crime(models.Model):
-    debtor = models.ForeignKey(Debtor, on_delete=models.CASCADE)
     causeNumber = models.CharField(max_length = 15)
-    sex = models.CharField(max_length=1)
-    race = models.CharField(max_length=3)
-    myDate = timezone.now()
-    dob = models.DateTimeField('date of birth', default=myDate)
-    offense_date = models.DateTimeField('date of offense', default=myDate)
-    offense_text = models.CharField(max_length=100, default="MM")
-    offense_type = models.CharField(max_length=10, default="MM")
-    case_text = models.CharField(max_length=20, default="MM")
-    disposition_text = models.CharField(max_length=40, default="MM")
-    judgement_date = models.DateTimeField('date of judgement', default=myDate)
-    judgement_text = models.CharField(max_length=40, default="MM")
-    sentence_text = models.CharField(max_length=40, default="MM")
-    sentence_start_date = models.DateTimeField('date of sentence start', default=myDate)
-    sentence_stop_date = models.DateTimeField('date of sentence stop', default=myDate)
-    fine_amount = models.IntegerField(default=0)
+    debtor = models.ForeignKey(Debtor, on_delete=models.CASCADE)
+    address = models.CharField(max_length=200, null=True)
+    city = models.CharField(max_length=50, null=True)
+    state = models.CharField(max_length=2, null=True)
+    zip = models.CharField(max_length=15, null=True)
+    sex = models.CharField(max_length=1, null=True)
+    race = models.CharField(max_length=3, null=True)
+    #myDate = timezone.now()
+    #dob = models.DateTimeField('date of birth', default=myDate)
+    #offense_date = models.DateTimeField('date of offense', default=myDate)
+    offense_text = models.CharField(max_length=100, default="MM", null=True)
+    offense_type = models.CharField(max_length=10, default="MM", null=True)
+    case_text = models.CharField(max_length=20, default="MM", null=True)
+    disposition_text = models.CharField(max_length=40, default="MM", null=True)
+    #judgement_date = models.DateTimeField('date of judgement', default=myDate)
+    judgement_text = models.CharField(max_length=40, default="MM", null=True)
+    sentence_text = models.CharField(max_length=40, default="MM", null=True)
+    #sentence_start_date = models.DateTimeField('date of sentence start', default=myDate)
+    #sentence_stop_date = models.DateTimeField('date of sentence stop', default=myDate)
+    fine_amount = models.IntegerField(default=0, null=True)
     def __str__(self):
         return self.causeNumber

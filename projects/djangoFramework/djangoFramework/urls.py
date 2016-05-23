@@ -7,6 +7,6 @@ urlpatterns = [
     url(r'^polls/', include('polls.urls')),
     url(r'debtors/', include('debtors.urls')),
     url(r'^accounts/', include('allauth.urls')),
-    url(r'^search/', include('haystack.urls')),
+    #url(r'^search/', include('haystack.urls')),
 ]
 

@@ -25,6 +25,9 @@ SECRET_KEY = '3^kv3hr4(x3_u_)v8t92#l6xg*vw$(@14ci=dgkgvs*c6ag-98'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
+
 ALLOWED_HOSTS = []
 
 # LOGIN_REDIRECT_URL = "/"
@@ -52,16 +55,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'haystack',
-    'csvimport.app.CSVImportConf',
+    'import_export',
 ]
-
+"""
 HAYSTACK_CONNECTIONS = {
     'default': {
       'ENGINE': 'haystack.backends.simple_backend.SimpleEngine',
     },
 
 }
+"""
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
@@ -131,7 +134,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'CST'
+#TIME_ZONE = 'CST'
 
 USE_I18N = True
 
