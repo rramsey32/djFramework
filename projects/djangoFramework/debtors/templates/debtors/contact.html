@@ -1,0 +1,24 @@
+{% extends "debtors/base.html" %}
+
+{% block body_block %}
+<div id="featured-wrapper">
+	<div id="featured" class="container">
+
+{% if user.is_authenticated %}
+    <br>
+    <h2>Current Users</h2><br>
+    <center>><p>For customer service inquiries, please send an email to <a mailto="service@businessblacklist.com">service@businessblacklist.com</a></p>
+    </center
+        <br>
+{% else %}
+    <br>
+    <h2>Customer Service Inquires</h2>
+    <p>Please direct all questions to inquiries to <a mailto="info@businessblacklist.com">info@businessblacklist.com</a></p>
+    <br>
+    <h2>Disputes</h2>
+    <p>Find an error? Think you shouldn't be in our database? Pay a bill but still find yourself publicly post? Please send
+    a detailed email to <a mailto="disputes@businessblacklist.com">disputes@businessblacklist.com</a></p>
+    <br>
+{% endif %}
+        </div></div>
+{% endblock %}

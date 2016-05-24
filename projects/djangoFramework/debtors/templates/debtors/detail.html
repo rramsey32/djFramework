@@ -1,24 +1,25 @@
 {% extends "debtors/base.html" %}
 
 {% block body_block %}
-
-<h1>{{ debtor.debtor_name }}</h1>
+<div id="page" class="container">
+<h1>Personal Profile:</h1><br>
+<h2>{{ debtor.debtor_name }}</h2>
 {% if debtor.crime_set.all %}
-<h2>Criminal Records:</h2>
+<h3>Criminal Records:</h3>
 <ul>
     {% for crime in debtor.crime_set.all %}
     <li>Cause Number: <a href="{% url 'debtors:crime' crime.id %}">{{ crime.causeNumber}}</a></li>
     {% endfor %}
 </ul>
-<h2>Known Addresses:</h2>
+<h3>Known Addresses:</h3>
 <ul>
     {% for crime in debtor.crime_set.all %}
-    <li>{{crime.address}} {{crime.city}} {{crime.state}} {{crime.zip}}</li>
+    <li>{{crime.address}}, {{crime.city}}, {{crime.state}} {{crime.zip}}</li>
     {% endfor %}
 </ul>
 {% endif %}
 {% if debtor.debt_set.all %}
-<h2>Debts</h2>
+<h3>Debts</h3>
 <ul>
     {% for debt in debtor.debt_set.all %}
     <li>{{debt.company}} {{debt.debt_amount}} </li>
@@ -30,11 +31,11 @@
 
 {% if debtor.comment_set.all %}
 <ul>
-    <h2>Comments:</h2>
+    <h3>Comments:</h3>
     {% for comment in debtor.comment_set.all %}
     <li>"{{ comment.comment_text }}" -made by {{ comment.user }} on {{ comment.comment_date }}</li>
     {% endfor %}
 </ul>
 {% endif %}
-
+</dev>
 {% endblock %}

@@ -1,32 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
+{% load staticfiles %}
+<link href="{% static "debtors/default.css" %}" rel="stylesheet" type="text/css" media="all" />
+<link href="{% static "debtors/fonts.css" %}" rel="stylesheet" type="text/css" media="all" />
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Business Blacklist</title>
-    </head>
+<!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
 
-    <body>
-     <center><h3><a href="/debtors/">Business Blacklist</a></h3></center>
-            {% if user.is_authenticated %}
+</head>
+<body>
+<div id="header">
+	<div id="menu" class="container">
+		<ul><!--
+			<li class="current_page_item"><a href="#" accesskey="1" title="Business Blacklist"</a> -->
+			<li><div id="logo" class="container">
+	<h1><a href="/debtors/" class="icon icon-tasks"><span>BusinessBlacklist.com</span></a></h1>
+</div></li>
+			<li><a href="/debtors/#featured" accesskey="1" title="">Our Service</a></li>
+			<li><a href="/debtors/#portfolio" accesskey="2" title="">Pricing</a></li>
+			<li><a href="/debtors/contact/" accesskey="3" title="">Contact</a></li>
+			{% if user.is_authenticated %}
+			<li><a href="/search/" accesskey="4" title="">Search</a></li>
+			<li><a href="/accounts/logout/" accesskey="5" title="">Logout</a></li>
+			<li><a href="/accounts/profile/" accesskey="6" title="">My Account</a></li>
+			{% else %}
+			<li><a href="/accounts/login/" accesskey="4" title="">Login</a></li>
+			<li><a href="/accounts/signup/" accesskey="5" title="">Sign Up</a></li>
+			{% endif %}
+		</ul>
+	</div>
+</div>
 
-    <div>{% block body_block %}{% endblock  %}</div>
-
-
-
-          <hr />
-
-        <div>
-            <ul>
-                <li><a href="/search/">Search Debtors</a></li>
-                <li><a href="/accounts/logout/">Logout</a></li>
-            {% else %}
-                <li><a href="/accounts/register/">Register Here</a></li>
-                <li><a href="/accounts/login/">Login</a></li>
-            {% endif %}
-            </ul>
-        </div>
-
-
-
-    </body>
+    {% block body_block %} {% endblock  %}
+<br>
+<hr>
+<div id="contact" class="container">
+    <!--
+		<div class="major">
+			<h3>Contact Us</h3>
+		</div>
+		-->
+		<ul class="contact">
+			<li><a href="#" class="icon icon-twitter"><span>Twitter</span></a></li>
+			<li><a href="#" class="icon icon-facebook"><span></span></a></li>
+			<li><a href="#" class="icon icon-dribbble"><span>Pinterest</span></a></li>
+			<li><a href="#" class="icon icon-tumblr"><span>Google+</span></a></li>
+			<li><a href="#" class="icon icon-rss"><span>Pinterest</span></a></li>
+		</ul>
+</div>
+<div id="copyright" class="container">
+	<p>&copy; The Business Blacklist All rights reserved. | Website by <a href="http://foundationittxcom" rel="nofollow">Foundation IT Service</a>.</p>
+</div>
+</body>
 </html>

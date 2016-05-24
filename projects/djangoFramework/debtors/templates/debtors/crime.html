@@ -1,0 +1,18 @@
+{% extends "debtors/base.html" %}
+
+{% block body_block %}
+
+<div id="page" class="container">
+<h1>Offender: </h1><br><h2><a href="{% url 'debtors:detail' crime.debtor.id %}">{{ crime.debtor.debtor_name }}</a></h2> <br>
+<strong>DOB:</strong> {{ crime.dob }} - <strong>Sex:</strong> {{ crime.sex }} - <strong>Race:</strong> {{ crime.race }}<br>
+<br><strong>Address:</strong> {{ crime.address }}, {{ crime.city }}, {{crime.state}} {{crime.zip}}<br>
+<br>
+    <h2>Case Details:</h2><br>
+<strong>Cause Number:</strong> {{ crime.causeNumber }}<br><br>
+<strong>Charge:</strong> {{ crime.offense_text }}<br><br>
+<strong>Disposition:</strong> {{ crime.disposition_text }}<br><br>
+<strong>Judgement: </strong>{{ crime.judgement_text }}<br><br>
+<strong>Sentence: </strong>{{ crime.sentence_text }}<br><br>
+<br>
+</div>
+{% endblock %}

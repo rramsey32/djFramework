@@ -1,7 +1,8 @@
 
 {% extends 'debtors/base.html' %}
 {% block body_block %}
-    <h2>Search</h2>
+ <div id="search" class="container">
+<br>    <h2>Search by name, address or phone</h2>
 
     <form method="get" action=".">
         <table>
@@ -18,9 +19,16 @@
             <h3>Results</h3>
 
             {% for result in page.object_list %}
+                {% if result.object.debtor_name %}
                 <p>
-                    <a href="{{ result.object.get_absolute_url }}">{{ result.object.debtor_name }}</a> - DOB: {{ result.object.debtor_dob }} -- {{result.object.debtor_address }} {{result.object.debtor_city }}, {{result.object.debtor_state}} -- Phone: {{result.object.debtor_phone}}
+                    <a href="{{ result.object.get_absolute_url }}">{{ result.object.debtor_name }}</a>
                 </p>
+                {% endif %}
+                {% if result.object.causeNumber %}
+                 <p>
+                    <a href="{{ result.object.get_absolute_url }}">{{ result.object.causeNumber }}</a> - {{ result.object.debtor.debtor_name }} - {{ result.object.address }}, {{ result.object.city }}, {{ result.object.state }} {{ result.object.zip }}
+                </p>
+                {% endif %}
             {% empty %}
                 <p>No results found.</p>
             {% endfor %}
@@ -36,4 +44,5 @@
             {# Show some example queries to run, maybe query syntax, something else? #}
         {% endif %}
     </form>
+    </div>
 {% endblock %}

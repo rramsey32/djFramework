@@ -25,6 +25,9 @@ class CrimeResource(resources.ModelResource):
     class Meta:
         model = Crime
         import_id_fields = ['id']
+        #exclude = ( 'dob', )
+
+        #widgets = { 'dob' : { 'format' : '%Y.%m.%Y' }, }
         #fields = ('debtor_id')
         #def dehydrate_school_id(self, crime):
         #    return crime.debtor.debtor_name

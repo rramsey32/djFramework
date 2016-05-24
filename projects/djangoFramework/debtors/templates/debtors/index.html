@@ -1,18 +1,91 @@
 {% extends "debtors/base.html" %}
 
 {% block body_block %}
-<br>
-{% if latest_debtor_list %}
-  <center>
-      <h3>Your daily list of debtors</h3>
-      <ul>
-
-    {% for debtor in latest_debtor_list %}
-        <li><a href="{% url 'debtors:detail' debtor.debtor_id %}">{{ debtor.debtor_name }}</a></li>
-    {% endfor %}
-    </ul></center>
-{% else %}
-    <p>No debts are available.</p>
-{% endif %}
+{% load staticfiles %}
+<div id="page" class="container">
+	<div id="content">
+		<div class="title">
+			<h2>The Blacklist you knew the internet would produce</h2>
+			<span class="byline">Made for business owners</span>
+			<br>
+		</div>
+		<p>This is <strong>The Business Blacklist</strong>, a free, fully standards-compliant CSS template designed by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>. The photos in this template are from <a href="http://fotogrph.com/"> Fotogrph</a>. This free template is released under the <a href="http://templated.co/license">Creative Commons Attribution</a> license, so you're pretty much free to do whatever you want with it (even use it commercially) provided you give us credit for it. Have fun :) </p>
+	</div>
+	<div id="sidebar"><a href="#" class="image image-full"><img src="{% static "debtors/images/pic05.jpg" %}" alt="" /></a></div>
+</div>
+<div id="featured-wrapper">
+	<div id="featured" class="container">
+		<div class="major">
+			<h2>Know Your Customers</h2>
+			<span class="byline">Think Angies List, in reverse</span>
+		</div>
+		<div class="column1">
+			<span class="icon icon-bar-chart"></span>
+			<div class="title">
+				<h2>Business Networking</h2>
+				<span class="byline">Find information shared by other users.</span>
+			</div>
+		</div>
+		<div class="column2">
+			<span class="icon icon-qrcode"></span>
+			<div class="title">
+				<h2>Criminal Information</h2>
+				<span class="byline">Our database contains over 1,000,000 criminal records.</span>
+			</div>
+		</div>
+		<div class="column3">
+			<span class="icon icon-building"></span>
+			<div class="title">
+				<h2>Liens and Judgments</h2>
+				<span class="byline">Find out who is in a pinch before you offer to help.</span>
+			</div>
+		</div>
+		<div class="column4">
+			<span class="icon icon-picture"></span>
+			<div class="title">
+				<h2>Post Your Debts for Others</h2>
+				<span class="byline">Post your debts for other users. Even post them to the world.</span>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="portfolio-wrapper">
+	<div id="portfolio" class="container">
+		<div class="major">
+			<h2>You can't afford NOT to use us</h2>
+			<span class="byline">Our service will pay you back the first time you use it, and then some.</span>
+		</div>
+		<div class="column1">
+			<a href="#" class="image image-full"><img src="{% static "debtors/images/pic01.jpg" %}" height="150" alt="" /></a>
+			<div class="box">
+				<p><center>Introductory Package: $100/year</center><br><br>
+				Get 100 searches per month on one workstation. This is cheap insurance for any business.
+				</p>
+				<a href="/signup/" class="button">Read More</a>
+			</div>
+		</div>			
+		<div class="column2">
+			<a href="#" class="image image-full"><img src="{% static "debtors/images/pic02.jpg" %}" height="150" alt="" /></a>
+			<div class="box">
+				<p><center>Small Biz Package: $250/year</center><br>Get 250 searches per month. Up to two simultaneous logins. Allows posting your debts publicly.</p>
+				<a href="/signup/" class="button">Read More</a>
+			</div>
+		</div>			
+		<div class="column3">
+			<a href="#" class="image image-full"><img src="{% static "debtors/images/pic03.jpg" %}" height="150" alt="" /></a>
+			<div class="box">
+				<p><center>Corporate Package: $500/year</center><br><br>5000 searches per month. Sign up multiple users under account. Allows posting of debts publicly.</p>
+				<a href="/signup/" class="button">Read More</a>
+			</div>
+		</div>			
+		<div class="column4">
+			<a href="#" class="image image-full"><img src="{% static "debtors/images/pic04.jpg" %}" height="150" alt="" /></a>
+			<div class="box">
+				<p><center>Collect your money</center><br>We don't charge a percentage when you recover money owed to you. Collect every dollar you are owed.</p>
+				<a href="/signup/" class="button">Read More</a>
+			</div>
+		</div>	
+	</div>
+</div>
 
 {% endblock %}
